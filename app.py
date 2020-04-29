@@ -24,8 +24,12 @@ def success():
     if request.method=='POST':
         email= request.form["email_field"]
         bday = request.form["birthday_field"]
-    print(email,bday)
-    return render_template("success.html")
+    if db.session.query(Data).filter(Data.email_==email).count() == 0:
+        input_data = Data(email,bday)
+        db.session.add(input_data)
+        db.session.commit()
+        return render_template("success.html")
+    return render_template("index.html" , text = "The Email id you have provided already exists in our database!")
 
 if __name__ == "__main__":
     app.debug=True
