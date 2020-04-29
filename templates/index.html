@@ -2,15 +2,15 @@
 <html lang="en">
     <title>Data Collector</title>
     <head>
-        <link href= "E:\data_collector\static\main.css" rel= "stylesheet">
+        <link href="..\static\main.css"  rel= "stylesheet">
     </head>
     <body>
         <div class= "container">
             <h1> How old are you? </h1>
-            <h3> Please enter your details</h3>
-            <form action= "success.html" method="POST">
+            <h3> Please enter your details!</h3>
+            <form action= "{{ url_for('success') }}" method="POST">
                 <input title= "Your email id" placeholder="Enter your email id" type="email" name= email_field required> <br>
-                <input title= "Your birth date" placeholder="Enter your birthday" type="datetime" name= birthday_field required> <br>
+                <input title= "Your birth date" placeholder="Enter your birthday" type="date" name= birthday_field required> <br>
                 <button type="submit"> Submit </button>
             </form>
         </div>
