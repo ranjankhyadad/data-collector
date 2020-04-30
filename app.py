@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:password@localhost/data_collector'
@@ -24,8 +25,10 @@ def index():
 def success():
     if request.method=='POST':
         email= request.form["email_field"]
-        bday = request.form["birthday_field"]
-        send_email(email,bday)
+        bday =  datetime.strptime(request.form["birthday_field"], "%Y-%m-%d")
+        date_diff = datetime.now() - bday
+        age = date_diff.days
+        send_email(email,bday,age)
     if db.session.query(Data).filter(Data.email_==email).count() == 0:
         input_data = Data(email,bday)
         db.session.add(input_data)
