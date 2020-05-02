@@ -28,7 +28,7 @@ def success():
     if request.method=='POST':
         email= request.form["email_field"]
         bday =  datetime.strptime(request.form["birthday_field"], "%Y-%m-%d").date()
-        date_diff = datetime.now() - bday
+        date_diff = datetime.now().date() - bday
         age = date_diff.days
         send_email(email,bday,age)
     if db.session.query(Data).filter(Data.email_==email).count() == 0:
