@@ -4,7 +4,9 @@ from send_email import send_email
 from datetime import datetime
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:password@localhost/data_collector'
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:password@localhost/data_collector'
+# URI for Heroku db
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://hxukgirxrvwjzh:ec3f3035fcf5dc6cbde92a41c537efd0319ec8c14a744ade91625b5db252773a@ec2-54-165-36-134.compute-1.amazonaws.com:5432/d9p8ahkm69hbbs?ssl=require'
 db = SQLAlchemy(app)
 
 class Data(db.Model):
